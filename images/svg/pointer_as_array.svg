@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420">
+  <!-- Background for dark/light compatibility -->
+  <rect width="1100" height="420" fill="#fff" rx="12"/>
+
+  <!-- ===== DEFS: Arrow markers ===== -->
+  <defs>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e7d32"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7b1fa2"/>
+    </marker>
+  </defs>
+
+  <!-- ===== TITLE ===== -->
+  <text x="550" y="32" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="20" font-weight="bold" fill="#222">
+    Treating Pointers as Arrays
+  </text>
+  <text x="550" y="54" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="13" fill="#666">
+    int data[] = {100, 200, 300, 400, 500};    int* ptr = data;
+  </text>
+
+  <!-- ===== MEMORY REGION BACKGROUND ===== -->
+  <rect x="60" y="108" width="980" height="170" rx="8"
+        fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="80" y="128" font-family="Consolas, monospace"
+        font-size="11" font-weight="bold" fill="#4285f4">STACK MEMORY</text>
+
+  <!-- ===== INDEX LABELS (above cells) ===== -->
+  <text x="190" y="148" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="12" fill="#888">[0]</text>
+  <text x="358" y="148" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="12" fill="#888">[1]</text>
+  <text x="526" y="148" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="12" fill="#7b1fa2" font-weight="bold">[2]</text>
+  <text x="694" y="148" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="12" fill="#888">[3]</text>
+  <text x="862" y="148" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="12" fill="#888">[4]</text>
+
+  <!-- ===== MEMORY CELLS ===== -->
+  <!-- Cell 0 -->
+  <rect x="110" y="155" width="160" height="60" rx="4"
+        fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="190" y="193" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="22" font-weight="bold" fill="#e65100">100</text>
+
+  <!-- Cell 1 -->
+  <rect x="278" y="155" width="160" height="60" rx="4"
+        fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="358" y="193" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="22" font-weight="bold" fill="#e65100">200</text>
+
+  <!-- Cell 2 (highlighted — target of ptr[2]) -->
+  <rect x="446" y="155" width="160" height="60" rx="4"
+        fill="#f3e5f5" stroke="#7b1fa2" stroke-width="3"/>
+  <text x="526" y="193" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="22" font-weight="bold" fill="#7b1fa2">300</text>
+
+  <!-- Cell 3 -->
+  <rect x="614" y="155" width="160" height="60" rx="4"
+        fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="694" y="193" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="22" font-weight="bold" fill="#e65100">400</text>
+
+  <!-- Cell 4 -->
+  <rect x="782" y="155" width="160" height="60" rx="4"
+        fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="862" y="193" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="22" font-weight="bold" fill="#e65100">500</text>
+
+  <!-- ===== ADDRESSES (below cells) ===== -->
+  <rect x="120" y="221" width="140" height="22" rx="3"
+        fill="#e3f2fd" stroke="#1565c0" stroke-width="1"/>
+  <text x="190" y="237" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="11" fill="#1565c0" font-weight="bold">0x2000</text>
+
+  <rect x="288" y="221" width="140" height="22" rx="3"
+        fill="#e3f2fd" stroke="#1565c0" stroke-width="1"/>
+  <text x="358" y="237" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="11" fill="#1565c0" font-weight="bold">0x2004</text>
+
+  <rect x="456" y="221" width="140" height="22" rx="3"
+        fill="#e8f5e9" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="526" y="237" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="11" fill="#7b1fa2" font-weight="bold">0x2008</text>
+
+  <rect x="624" y="221" width="140" height="22" rx="3"
+        fill="#e3f2fd" stroke="#1565c0" stroke-width="1"/>
+  <text x="694" y="237" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="11" fill="#1565c0" font-weight="bold">0x200C</text>
+
+  <rect x="792" y="221" width="140" height="22" rx="3"
+        fill="#e3f2fd" stroke="#1565c0" stroke-width="1"/>
+  <text x="862" y="237" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="11" fill="#1565c0" font-weight="bold">0x2010</text>
+
+  <!-- ===== POINTER ARROWS (from below) ===== -->
+
+  <!-- data → element 0 -->
+  <text x="130" y="290" font-family="Consolas, monospace"
+        font-size="12" font-weight="bold" fill="#2e7d32">data</text>
+  <text x="130" y="305" font-family="Consolas, monospace"
+        font-size="10" fill="#2e7d32">(array name)</text>
+  <line x1="140" y1="278" x2="175" y2="248" stroke="#2e7d32" stroke-width="2.5"
+        marker-end="url(#arrowGreen)"/>
+
+  <!-- ptr → element 0 -->
+  <text x="225" y="290" font-family="Consolas, monospace"
+        font-size="12" font-weight="bold" fill="#2e7d32">ptr</text>
+  <text x="225" y="305" font-family="Consolas, monospace"
+        font-size="10" fill="#2e7d32">(int*)</text>
+  <line x1="232" y1="278" x2="205" y2="248" stroke="#2e7d32" stroke-width="2.5"
+        marker-end="url(#arrowGreen)"/>
+
+  <!-- "same place" annotation between the two arrows -->
+  <text x="183" y="268" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="9" fill="#2e7d32" font-style="italic">same!</text>
+
+  <!-- ptr[2] / *(ptr+2) → element 2 (purple highlighted arrow) -->
+  <text x="526" y="290" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="12" font-weight="bold" fill="#7b1fa2">ptr[2]</text>
+  <text x="526" y="305" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="10" fill="#7b1fa2">*(ptr + 2)</text>
+  <line x1="526" y1="278" x2="526" y2="248" stroke="#7b1fa2" stroke-width="2.5"
+        marker-end="url(#arrowPurple)"/>
+
+  <!-- ===== EQUIVALENCE CALLOUT ===== -->
+  <rect x="140" y="325" width="820" height="80" rx="8"
+        fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="550" y="350" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="14" font-weight="bold" fill="#7b1fa2">
+    Bracket Notation is Just Pointer Arithmetic
+  </text>
+
+  <!-- Equivalence chain -->
+  <text x="200" y="380" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="16" font-weight="bold" fill="#7b1fa2">ptr[2]</text>
+  <text x="310" y="380" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="16" fill="#888">=</text>
+  <text x="440" y="380" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="16" font-weight="bold" fill="#7b1fa2">*(ptr + 2)</text>
+  <text x="570" y="380" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="16" fill="#888">=</text>
+  <text x="670" y="380" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="16" font-weight="bold" fill="#7b1fa2">data[2]</text>
+  <text x="770" y="380" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="16" fill="#888">=</text>
+  <text x="870" y="380" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="20" font-weight="bold" fill="#e65100">300</text>
+</svg>

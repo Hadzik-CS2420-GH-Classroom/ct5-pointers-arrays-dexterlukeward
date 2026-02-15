@@ -1,0 +1,323 @@
+name: Autograding Tests
+on:
+  - push
+  - repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Build Project
+      continue-on-error: true
+      run: |
+        cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+        cmake --build build --config Release
+
+    - name: Build Check (2 points)
+      id: build
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Build Check (2 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            echo "Build successful"
+          else
+            echo "Build failed" && exit 1
+          fi
+        timeout: 10
+        max-score: 2
+
+    # ==================== Pointers and Arrays Tests ====================
+
+    - name: Pointer Points to First Element (3 points)
+      id: ptr-first
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Pointer Points to First Element (3 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAndArraysTest.PointerPointsToFirstElement
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 3
+
+    - name: Address of Element 0 (1 point)
+      id: addr-elem0
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Address of Element 0 (1 point)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAndArraysTest.AddressOfElement0
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 1
+
+    - name: Address of Element 1 (1 point)
+      id: addr-elem1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Address of Element 1 (1 point)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAndArraysTest.AddressOfElement1
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 1
+
+    - name: Bytes Between Elements (3 points)
+      id: bytes-between
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Bytes Between Elements (3 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAndArraysTest.BytesBetweenElements
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 3
+
+    - name: Dereferenced Value (3 points)
+      id: deref-value
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Dereferenced Value (3 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAndArraysTest.DereferencedValue
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 3
+
+    - name: Modify Through Pointer (3 points)
+      id: modify-ptr
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Modify Through Pointer (3 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAndArraysTest.ModifyThroughPointer
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 3
+
+    - name: Pointer Arithmetic +1 (2 points)
+      id: arith-plus1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Pointer Arithmetic +1 (2 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAndArraysTest.PointerArithmeticPlus1
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 2
+
+    - name: Pointer Arithmetic +3 (2 points)
+      id: arith-plus3
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Pointer Arithmetic +3 (2 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAndArraysTest.PointerArithmeticPlus3
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 2
+
+    - name: Walking with Pointer Loop (4 points)
+      id: walk-ptr
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Walking with Pointer Loop (4 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAndArraysTest.WalkingWithPointer
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 4
+
+    # ==================== Pointers as Arrays Tests ====================
+
+    - name: Bracket Index ptr[0] (2 points)
+      id: bracket-ptr0
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Bracket Index ptr[0] (2 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAsArraysTest.BracketIndexPtr0
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 2
+
+    - name: Bracket Index ptr[2] (2 points)
+      id: bracket-ptr2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Bracket Index ptr[2] (2 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAsArraysTest.BracketIndexPtr2
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 2
+
+    - name: Bracket Index ptr[4] (1 point)
+      id: bracket-ptr4
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Bracket Index ptr[4] (1 point)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAsArraysTest.BracketIndexPtr4
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 1
+
+    - name: Loop Prints All Elements (3 points)
+      id: loop-all
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Loop Prints All Elements (3 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=PointersAsArraysTest.LoopPrintsAllElements
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 3
+
+    # ==================== Arrays as Pointers Tests ====================
+
+    - name: Array Decay Calls printArray (3 points)
+      id: array-decay
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Array Decay Calls printArray (3 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=ArraysAsPointersTest.ArrayDecayCallsPrintArray
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 3
+
+    - name: Dereference Array Name (2 points)
+      id: deref-array
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Dereference Array Name (2 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=ArraysAsPointersTest.DereferenceArrayName
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 2
+
+    - name: Array Name + Offset 2 (2 points)
+      id: array-offset2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Array Name + Offset 2 (2 points)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=ArraysAsPointersTest.ArrayNamePlusOffset2
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 2
+
+    - name: Array Name + Offset 4 (1 point)
+      id: array-offset4
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Array Name + Offset 4 (1 point)
+        setup-command: ''
+        command: |
+          if [ -f build/run_tests ]; then
+            cd build && ./run_tests --gtest_filter=ArraysAsPointersTest.ArrayNamePlusOffset4
+          else
+            exit 1
+          fi
+        timeout: 10
+        max-score: 1
+
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        BUILD_RESULTS: "${{steps.build.outputs.result}}"
+        PTR-FIRST_RESULTS: "${{steps.ptr-first.outputs.result}}"
+        ADDR-ELEM0_RESULTS: "${{steps.addr-elem0.outputs.result}}"
+        ADDR-ELEM1_RESULTS: "${{steps.addr-elem1.outputs.result}}"
+        BYTES-BETWEEN_RESULTS: "${{steps.bytes-between.outputs.result}}"
+        DEREF-VALUE_RESULTS: "${{steps.deref-value.outputs.result}}"
+        MODIFY-PTR_RESULTS: "${{steps.modify-ptr.outputs.result}}"
+        ARITH-PLUS1_RESULTS: "${{steps.arith-plus1.outputs.result}}"
+        ARITH-PLUS3_RESULTS: "${{steps.arith-plus3.outputs.result}}"
+        WALK-PTR_RESULTS: "${{steps.walk-ptr.outputs.result}}"
+        BRACKET-PTR0_RESULTS: "${{steps.bracket-ptr0.outputs.result}}"
+        BRACKET-PTR2_RESULTS: "${{steps.bracket-ptr2.outputs.result}}"
+        BRACKET-PTR4_RESULTS: "${{steps.bracket-ptr4.outputs.result}}"
+        LOOP-ALL_RESULTS: "${{steps.loop-all.outputs.result}}"
+        ARRAY-DECAY_RESULTS: "${{steps.array-decay.outputs.result}}"
+        DEREF-ARRAY_RESULTS: "${{steps.deref-array.outputs.result}}"
+        ARRAY-OFFSET2_RESULTS: "${{steps.array-offset2.outputs.result}}"
+        ARRAY-OFFSET4_RESULTS: "${{steps.array-offset4.outputs.result}}"
+      with:
+        runners: build,ptr-first,addr-elem0,addr-elem1,bytes-between,deref-value,modify-ptr,arith-plus1,arith-plus3,walk-ptr,bracket-ptr0,bracket-ptr2,bracket-ptr4,loop-all,array-decay,deref-array,array-offset2,array-offset4

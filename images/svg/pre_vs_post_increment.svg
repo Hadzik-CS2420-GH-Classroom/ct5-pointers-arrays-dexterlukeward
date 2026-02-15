@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 530">
+  <!-- Background -->
+  <rect width="1100" height="530" fill="#fff" rx="12"/>
+
+  <!-- ===== DEFS ===== -->
+  <defs>
+    <marker id="arrowRight" viewBox="0 0 10 10" refX="10" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e65100"/>
+    </marker>
+  </defs>
+
+  <!-- ===== TITLE ===== -->
+  <text x="550" y="34" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="20" font-weight="bold" fill="#222">
+    ++p  vs  p++
+  </text>
+  <text x="550" y="54" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="13" fill="#666">
+    Both increment p, but they differ in what they return
+  </text>
+
+  <!-- ===== VERTICAL DIVIDER ===== -->
+  <line x1="550" y1="68" x2="550" y2="455" stroke="#ccc" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- ======================================================= -->
+  <!-- LEFT COLUMN: ++p (Pre-Increment)                        -->
+  <!-- ======================================================= -->
+
+  <!-- Column header -->
+  <rect x="60" y="68" width="440" height="36" rx="6"
+        fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="280" y="92" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="16" font-weight="bold" fill="#2e7d32">++p  (pre-increment)</text>
+
+  <!-- Step 1: p holds current address -->
+  <rect x="80" y="120" width="400" height="70" rx="6"
+        fill="#fafafa" stroke="#ddd" stroke-width="1"/>
+  <text x="96" y="140" font-family="Consolas, monospace"
+        font-size="12" font-weight="bold" fill="#2e7d32">Step 1</text>
+  <text x="156" y="140" font-family="Consolas, monospace"
+        font-size="12" fill="#555">p holds current address</text>
+  <rect x="96" y="150" width="140" height="32" rx="4"
+        fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="108" y="163" font-family="Consolas, monospace"
+        font-size="9" fill="#888">p</text>
+  <text x="166" y="173" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="14" font-weight="bold" fill="#1565c0">0x1004</text>
+
+  <!-- Step 2: Increment p -->
+  <rect x="80" y="198" width="400" height="70" rx="6"
+        fill="#fafafa" stroke="#ddd" stroke-width="1"/>
+  <text x="96" y="218" font-family="Consolas, monospace"
+        font-size="12" font-weight="bold" fill="#2e7d32">Step 2</text>
+  <text x="156" y="218" font-family="Consolas, monospace"
+        font-size="12" fill="#555">Increment p, return the NEW value</text>
+  <rect x="96" y="228" width="140" height="32" rx="4"
+        fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.5"/>
+  <text x="108" y="241" font-family="Consolas, monospace"
+        font-size="9" fill="#888">p</text>
+  <text x="166" y="251" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="14" font-weight="bold" fill="#2e7d32">0x1008</text>
+
+  <!-- Result box -->
+  <rect x="80" y="278" width="400" height="52" rx="6"
+        fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="280" y="300" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="13" font-weight="bold" fill="#7b1fa2">Result:  returns 0x1008  (new value)</text>
+  <text x="280" y="320" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="11" fill="#555">p itself is the result — no copy needed</text>
+
+  <!-- Green summary badge -->
+  <rect x="130" y="346" width="250" height="36" rx="8"
+        fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="255" y="369" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="13" font-weight="bold" fill="#2e7d32">2 steps, no temp copy</text>
+
+  <!-- ======================================================= -->
+  <!-- RIGHT COLUMN: p++ (Post-Increment)                      -->
+  <!-- ======================================================= -->
+
+  <!-- Column header -->
+  <rect x="600" y="68" width="440" height="36" rx="6"
+        fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="820" y="92" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="16" font-weight="bold" fill="#e65100">p++  (post-increment)</text>
+
+  <!-- Step 1: p holds current address -->
+  <rect x="620" y="120" width="400" height="70" rx="6"
+        fill="#fafafa" stroke="#ddd" stroke-width="1"/>
+  <text x="636" y="140" font-family="Consolas, monospace"
+        font-size="12" font-weight="bold" fill="#555">Step 1</text>
+  <text x="696" y="140" font-family="Consolas, monospace"
+        font-size="12" fill="#555">p holds current address</text>
+  <rect x="636" y="150" width="140" height="32" rx="4"
+        fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="648" y="163" font-family="Consolas, monospace"
+        font-size="9" fill="#888">p</text>
+  <text x="706" y="173" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="14" font-weight="bold" fill="#1565c0">0x1004</text>
+
+  <!-- Step 2: Save a copy -->
+  <rect x="620" y="198" width="400" height="70" rx="6"
+        fill="#fff8f0" stroke="#e65100" stroke-width="1.5"/>
+  <text x="636" y="218" font-family="Consolas, monospace"
+        font-size="12" font-weight="bold" fill="#e65100">Step 2</text>
+  <text x="696" y="218" font-family="Consolas, monospace"
+        font-size="12" fill="#e65100">Save a copy of p before changing it</text>
+  <!-- p box -->
+  <rect x="636" y="228" width="140" height="32" rx="4"
+        fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="648" y="241" font-family="Consolas, monospace"
+        font-size="9" fill="#888">p</text>
+  <text x="706" y="251" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="14" font-weight="bold" fill="#1565c0">0x1004</text>
+  <!-- copy arrow -->
+  <line x1="778" y1="244" x2="840" y2="244" stroke="#e65100" stroke-width="2"
+        marker-end="url(#arrowRight)"/>
+  <text x="810" y="237" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="9" fill="#e65100">copy!</text>
+  <!-- temp box -->
+  <rect x="852" y="228" width="140" height="32" rx="4"
+        fill="#fff3e0" stroke="#e65100" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <text x="864" y="241" font-family="Consolas, monospace"
+        font-size="9" fill="#e65100" font-weight="bold">temp</text>
+  <text x="922" y="251" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="14" font-weight="bold" fill="#e65100">0x1004</text>
+
+  <!-- Step 3: Increment p -->
+  <rect x="620" y="278" width="400" height="70" rx="6"
+        fill="#fafafa" stroke="#ddd" stroke-width="1"/>
+  <text x="636" y="298" font-family="Consolas, monospace"
+        font-size="12" font-weight="bold" fill="#555">Step 3</text>
+  <text x="696" y="298" font-family="Consolas, monospace"
+        font-size="12" fill="#555">Increment p, return temp (OLD value)</text>
+  <!-- p box (now incremented) -->
+  <rect x="636" y="308" width="140" height="32" rx="4"
+        fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.5"/>
+  <text x="648" y="321" font-family="Consolas, monospace"
+        font-size="9" fill="#888">p</text>
+  <text x="706" y="331" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="14" font-weight="bold" fill="#2e7d32">0x1008</text>
+  <!-- temp box (faded, still holds old value) -->
+  <rect x="852" y="308" width="140" height="32" rx="4"
+        fill="#fff3e0" stroke="#e65100" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.6"/>
+  <text x="864" y="321" font-family="Consolas, monospace"
+        font-size="9" fill="#e65100" opacity="0.6">temp</text>
+  <text x="922" y="331" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="14" font-weight="bold" fill="#e65100" opacity="0.6">0x1004</text>
+
+  <!-- Result box -->
+  <rect x="620" y="358" width="400" height="52" rx="6"
+        fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="820" y="380" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="13" font-weight="bold" fill="#7b1fa2">Result:  returns 0x1004  (old value)</text>
+  <text x="820" y="400" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="11" fill="#555">Returns the saved copy, then discards temp</text>
+
+  <!-- Orange summary badge -->
+  <rect x="695" y="418" width="250" height="36" rx="8"
+        fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+  <text x="820" y="441" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="13" font-weight="bold" fill="#e65100">3 steps + temp copy</text>
+
+  <!-- ===== BOTTOM CALLOUT ===== -->
+  <rect x="60" y="468" width="980" height="52" rx="8"
+        fill="#f5f5f5" stroke="#888" stroke-width="1.5"/>
+  <text x="550" y="490" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="12" font-weight="bold" fill="#333">
+    In a for loop the return value is thrown away — so both produce the same output.
+  </text>
+  <text x="550" y="508" text-anchor="middle" font-family="Consolas, monospace"
+        font-size="12" fill="#555">
+    But ++p skips the copy.  For iterators this saves real work.  Either way, ++p is the standard C++ style.
+  </text>
+</svg>
