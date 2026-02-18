@@ -63,8 +63,9 @@ void pointersAndArrays() {
     // TODO: Print the difference in bytes between &numbers[1] and &numbers[0]
     //       Hint: cast the addresses to (char*) before subtracting to get bytes
     // Expected output: "Bytes between elements: 4"
-    
-	std::ptrdiff_t byteDifference = (char*)&numbers[1] - (char*)&numbers[0];
+
+    std::cout << "Bytes between elements: " << (char*)&numbers[1] - (char*)&numbers[0] << '\n';
+
     
     // ! DISCUSSION: Why cast to (char*) before subtracting?
     //   Pointer arithmetic is scaled by the type size. If we subtract two
